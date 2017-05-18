@@ -1,0 +1,11 @@
+The tape has the follow structure:
+
+<tape> ::== <arg>0<tape> | <arg>
+<arg>  ::== 1<num>
+<num>  ::== 1<num> | 1
+
+For example:
+1011101111
+arg0 == empty
+arg1 == 11
+arg2 == 1111
