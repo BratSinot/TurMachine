@@ -60,9 +60,25 @@ func (tp *InfyTape)Right() (*uint8) {
 	return &tp.mem[tp.cur]
 }
 
-func (tp InfyTape)Display() {
+func (tp InfyTape)DisplayTape() {
 	fmt.Printf("size: %d\ncap: %d\ncurr: %d\n", len(tp.mem), cap(tp.mem), tp.cur)
 	for i, c := range tp.mem {
 		fmt.Printf("%3d: %d\n", i, c)
 	}
+}
+
+func (tp InfyTape)DisplayList() {
+	for i := 0; i < len(tp.mem); i++ {
+		if tp.cur == i {
+			fmt.Printf("  * ")
+		} else {
+			fmt.Printf("%3d ", i)
+		}
+	}
+	fmt.Print("\n")
+
+	for _, c := range tp.mem {
+		fmt.Printf("%3d ", c)
+	}
+	fmt.Print("\n")
 }
