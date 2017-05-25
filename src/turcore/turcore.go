@@ -17,12 +17,11 @@
 	along with TurCore.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package main
+package turcore
 
 import (
 	"infytape"
 
-	"fmt"
 	"log"
 	"os"
 	"bufio"
@@ -123,43 +122,4 @@ func (tm *TurMachine)Execute() {
 				tm.sost = tm.cmd[tm.sost][1].nextSost
 		}
 	}
-}
-
-func main() {
-	var tmp TurMachine
-
-	/*tmp.FromFile("in.txt")
-	tmp.Set([]int8{1,1,1,0,1,0,1,1})
-	tmp.Execute()
-	tmp.Display()*/
-
-	fmt.Println("INC:")
-	tmp.FromFile("examples/inc.txt")
-	tmp.Set([]uint8{1,1,1,1})
-	tmp.Execute()
-	tmp.Display()
-
-	fmt.Println("\nSUM:")
-	tmp.FromFile("examples/sum.txt")
-	tmp.Set([]uint8{1,1,1,1,0,1,1})
-	tmp.Execute()
-	tmp.Display()
-
-	fmt.Println("\nX1:")
-	tmp.FromFile("examples/x1.txt")
-	tmp.Set([]uint8{1,1,0,1,1,0,1,1,1,1})
-	tmp.Execute()
-	tmp.Display()
-
-	fmt.Println("\nZERO:")
-	tmp.FromFile("examples/zero.txt")
-	tmp.Set([]uint8{1,1,1,1})
-	tmp.Execute()
-	tmp.Display()
-
-	fmt.Println("\nZERON:")
-	tmp.FromFile("examples/zeroN.txt")
-	tmp.Set([]uint8{1,1,0,1,1,0,1,1,1,1})
-	tmp.Execute()
-	tmp.Display()
 }

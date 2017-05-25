@@ -10,5 +10,5 @@ cd ../../
 export GOPATH=$PWD || exit 1
 cd $OLD
 #go test -cpuprofile cpu.prof -memprofile mem.prof -bench .
-go run turcore.go
+go run turtest.go
 #sudo ./build/turcore.run
