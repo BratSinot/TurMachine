@@ -42,12 +42,10 @@ type slot struct {
 }
 
 type TurMachine struct {
-	//Tape infytape.InfyTape
 	infytape.InfyTape
 
 	cmd [][2]slot
 	sost int
-	add_sost int
 }
 
 func (tm *TurMachine)Add(q int, curr int, move uint8, set uint8, nextSost int) {
@@ -108,18 +106,23 @@ func (tm *TurMachine)move(m uint8) {
 	}
 }
 
+func (tm *TurMachine)Next() int {
+	curr := tm.Curr()
+	switch *curr {
+		case 0:
+			*curr = tm.cmd[tm.sost][0].set
+			tm.move(tm.cmd[tm.sost][0].move)
+			tm.sost = tm.cmd[tm.sost][0].nextSost
+		case 1:
+			*curr = tm.cmd[tm.sost][1].set
+			tm.move(tm.cmd[tm.sost][1].move)
+			tm.sost = tm.cmd[tm.sost][1].nextSost
+	}
+
+	return tm.sost
+}
+
 func (tm *TurMachine)Execute() {
-	for tm.sost != 0 /* q0 */ {
-		curr := tm.Curr()
-		switch *curr {
-			case 0:
-				*curr = tm.cmd[tm.sost][0].set
-				tm.move(tm.cmd[tm.sost][0].move)
-				tm.sost = tm.cmd[tm.sost][0].nextSost
-			case 1:
-				*curr = tm.cmd[tm.sost][1].set
-				tm.move(tm.cmd[tm.sost][1].move)
-				tm.sost = tm.cmd[tm.sost][1].nextSost
-		}
+	for tm.Next() != 0 /* q0 */ {
 	}
 }
